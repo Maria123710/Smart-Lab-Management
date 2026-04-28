@@ -6,8 +6,9 @@ import { CheckInOut } from "./components/CheckInOut";
 import { MaintenanceTracker } from "./components/MaintenanceTracker";
 import { AdminPanel } from "./components/AdminPanel";
 import { Login } from "./components/Login";
+import { createHashRouter } from "react-router"
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   { path: "/login", Component: Login },
   {
     path: "/",
@@ -20,7 +21,4 @@ export const router = createBrowserRouter([
       { path: "admin", Component: AdminPanel },
     ],
   },
-], {
-  // Add this block here:
-  basename: "/Smart-Lab-Management"
-});
+]);
