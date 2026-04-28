@@ -20,4 +20,7 @@ export const router = createBrowserRouter([
       { path: "admin", Component: AdminPanel },
     ],
   },
-]);
+], {
+  // Add this block here:
+  basename: "/Smart-Lab-Management"
+});
