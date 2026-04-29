@@ -3,7 +3,6 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
-
 function figmaAssetResolver() {
   return {
     name: 'figma-asset-resolver',
@@ -17,21 +16,39 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  base: './',
+  // Use the repo name for GitHub Pages or './' for relative paths
+  base: '/Smart-Lab-Management/', 
+  
   plugins: [
     figmaAssetResolver(),
-    // The React and Tailwind plugins are both required for Make, even if
-    // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
   ],
+
   resolve: {
     alias: {
-      // Alias @ to the src directory
       '@': path.resolve(__dirname, './src'),
     },
   },
 
-  // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
+  build: {
+    // Helps with performance on mobile/tablet devices
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router'],
+          ui: ['lucide-react', '@mui/material', '@emotion/react'],
+        },
+      },
+    },
+  },
+
   assetsInclude: ['**/*.svg', '**/*.csv'],
+
+  server: {
+    // Useful for testing on physical mobile devices in the same Wi-Fi
+    host: true, 
+    port: 5173,
+  },
 })

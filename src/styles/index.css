@@ -1,3 +1,26 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+/* Mobile Phones (Portrait and Landscape) */
+@media (max-width: 767px) {
+  /* Stack sidebar, reduce padding, and scale down font sizes */
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-label {
+    display: none; /* Show only icons in a bottom nav bar if needed */
+  }
+}
+
+/* Tablets (Portrait) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Adjusted sidebar width or grid layout */
+  .sidebar {
+    width: 80px;
+  }
+  
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
